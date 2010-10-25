@@ -129,8 +129,8 @@ if (typeof require != "undefined") {
             };
 
             var expected = "{\n  hello: function () {},\n  id: 42,\n  obj" +
-                ": {\n    num: 23,\n    string: \"Here you go you little mister\"" +
-                "\n  },\n  prop: \"Some\"\n}";
+                ": { num: 23, string: \"Here you go you little mister\"" +
+                " },\n  prop: \"Some\"\n}";
 
             assert.equal(expected, buster.format.ascii(object));
         },
@@ -162,9 +162,9 @@ if (typeof require != "undefined") {
 
             var person = new C("Christian");
             var formatter = create(buster.format);
-            // formatter.excludeConstructors = [];
+            formatter.excludeConstructors = [];
 
-            // assert.equal("[C] { name: \"Christian\" }", formatter.ascii(person));
+            assert.equal("[C] { name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should exclude constructors when configured to do so": function () {
@@ -174,9 +174,9 @@ if (typeof require != "undefined") {
 
             var person = new Person("Christian");
             var formatter = create(buster.format);
-            // formatter.excludeConstructors = ["Person"];
+            formatter.excludeConstructors = ["Person"];
 
-            // assert.equal("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equal("{ name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should exclude constructors by pattern when configured to do so": function () {
@@ -196,11 +196,25 @@ if (typeof require != "undefined") {
             var ninja = new Ninja("Haruhachi");
             var pervert = new Pervert("Mr. Garrison");
             var formatter = create(buster.format);
-            // formatter.excludeConstructors = [/^Per/];
+            formatter.excludeConstructors = [/^Per/];
 
-            // assert.equal("{ name: \"Christian\" }", formatter.ascii(person));
-            // assert.equal("[Ninja] { name: \"Haruhachi\" }", formatter.ascii(ninja));
-            // assert.equal("{ name: \"Mr. Garrison\" }", formatter.ascii(pervert));
+            assert.equal("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equal("[Ninja] { name: \"Haruhachi\" }", formatter.ascii(ninja));
+            assert.equal("{ name: \"Mr. Garrison\" }", formatter.ascii(pervert));
+        },
+
+        "should not trip on circular formatting": function () {
+            var object = {};
+            object.foo = object;
+
+            assert.equal("{ foo: [Circular] }", buster.format.ascii(object));
+        },
+
+        "should not trip on indirect circular formatting": function () {
+            var object = { someProp: {} };
+            object.someProp.foo = object;
+
+            assert.equal("{ someProp: { foo: [Circular] } }", buster.format.ascii(object));
         }
     });
 

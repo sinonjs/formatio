@@ -87,6 +87,14 @@ if (typeof require != "undefined") {
             assert.equal('[function ohNo() {}, ["String", 123, /a-z/, null]]', str);
         },
 
+        "should not trip on circular arrays": function () {
+            var array = ["String", 123, /a-z/];
+            array.push(array);
+
+            var str = buster.format.ascii(array);
+            assert.equal('["String", 123, /a-z/, [Circular]]', str);
+        },
+
         "should format object": function () {
             var object = {
                 id: 42,

@@ -238,9 +238,11 @@ if (typeof require != "undefined") {
                 var element = document.createElement("div");
                 element.className = "hey there";
                 element.id = "ohyeah";
+                var str = buster.format.ascii(element);
 
-                assert.equal("<div class=\"hey there\" id=\"ohyeah\"></div>",
-                             buster.format.ascii(element));
+                assert.ok(/<div (.*)><\/div>/.test(str));
+                assert.ok(/class="hey there"/.test(str));
+                assert.ok(/id="ohyeah"/.test(str));
             },
 
             "should format dom element with content": function () {
@@ -264,9 +266,11 @@ if (typeof require != "undefined") {
                 element.id = "anid";
                 element.lang = "en"
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
+                var str = buster.format.ascii(element);
 
-                assert.equal("<div lang=\"en\" id=\"anid\">Oh hi! I'm Christian</div>",
-                             buster.format.ascii(element));
+                assert.ok(/<div (.*)>Oh hi! I'm Christian<\/div>/.test(str));
+                assert.ok(/lang="en"/.test(str));
+                assert.ok(/id="anid"/.test(str));
             }
         });
     }

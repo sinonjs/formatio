@@ -22,7 +22,7 @@ Ascii Formatting
 
 +buster.format.ascii+ can take any JavaScript object and format it nicely as
 plain text. It uses the helper functions described below to format different
-types of object.
+types of objects.
 
 +buster.format.ascii(value)+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -225,6 +225,13 @@ console.log(buster.format.ascii(person));
 
 var formatter = Object.create(buster.format);
 formatter.excludeConstructors = ["Object", /^.$/, "Person"];
+console.log(formatter.ascii(person));
+
+// Outputs, recommeded
+// { name: "Chris" }
+
+// Global overwrite, generally not recommended
+buster.format.excludeConstructors = ["Object", /^.$/, "Person"];
 console.log(buster.format.ascii(person));
 
 // Outputs

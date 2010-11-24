@@ -1,0 +1,238 @@
+Buster Object Format 0.1.0 documentation
+========================================
+:Author: Christian Johansen
+:Email: christian@cjohansen.no
+
+Utility functions with helpers for pretty formatting of arbitrary JavaScript
+values. Currently only supports ascii formatting, suitable for command line
+utilities. Like +JSON.stringify+ it formats objects recursively, but unlike
++JSON.stringify+, it can handle regular expressions, functions and more.
+
+*buster-object-format* works in browsers and on Node.js.
+
+Table of contents
+-----------------
+* <<ascii,Ascii formatting>>
+* <<customize,Customizing buster-object-format>>
+* <<license,License (BSD)>>
+
+[[ascii]]
+Ascii Formatting
+----------------
+
++buster.format.ascii+ can take any JavaScript object and format it nicely as
+plain text. It uses the helper functions described below to format different
+types of object.
+
++buster.format.ascii(value)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++value+ can be any kind of object, including DOM elements.
+
+Simple object
+^^^^^^^^^^^^^
+
+[source,javascript]
+----
+var sys = require("sys");
+var format = require("object-format");
+
+var object = {
+    name: "Christian"
+};
+
+sys.puts(format.ascii(object));
+
+// Outputs:
+// { name: "Christian" }
+----
+
+Complex object
+^^^^^^^^^^^^^^
+
+[source,javascript]
+----
+var sys = require("sys");
+var format = require("object-format");
+
+var developer = {
+    name: "Christian",
+    interests: ["Programming", "Guitar", "TV"],
+
+    location: {
+        language: "Norway",
+        city: "Oslo",
+
+        getLatLon: function getLatLon(callback) {
+            // ...
+        },
+
+        distanceTo: function distanceTo(location) {
+        }
+    },
+
+    speak: function () {
+        return "Oh hi!";
+    }
+};
+
+sys.puts(format.ascii(developer));
+
+// Outputs:
+// {
+//   interests: ["Programming", "Guitar", "TV"],
+//   location: {
+//     city: "Oslo",
+//     distanceTo: function distanceTo() {},
+//     getLatLon: function getLatLon() {},
+//     language: "Norway"
+//   },
+//   name: "Christian",
+//   speak: function () {}
+// }
+----
+
+Custom constructor
+^^^^^^^^^^^^^^^^^^
+
+If the object to format is not a generic +Object+ object, *buster-object-format*
+displays the type of object (i.e. name of constructor). For information on how
+to control what constructors will and will not be displayed, see
+<<customize,customizing>>.
+
+[source,javascript]
+----
+var sys = require("sys");
+var format = require("object-format");
+
+function Person(name) {
+    this.name = name;
+}
+var dude = new Person("Dude");
+
+sys.puts(format.ascii(dude));
+
+// Outputs:
+// [Person] { name: "Dude" }
+----
+
+DOM element
+^^^^^^^^^^^
+
+DOM elements are formatted as abbreviated HTML source. 20 characters of
++innerHTML+ is included, and if the content's longer, it's truncated with a
+"[...]". Future editions will add the possibility to format nested markup
+structures.
+
+[source,javascript]
+----
+var p = document.createElement("p");
+p.id = "sample";
+p.className = "notice";
+p.setAttribute("data-custom", "42");
+p.innerHTML = "Hey there, here's some text for ya there buddy";
+
+console.log(buster.format.ascii(p));
+
+// Outputs
+// <p id="sample" class="notice" data-custom="42">Hey there, here's so[...]</p>
+----
+
++buster.format.ascii.functionName(func)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Guesses a function's name. If the function defines the +displayName+ property
+(used by some debugging tools) it is preferred. If it is not found, the +name+
+property is tried. If no name can be found this way, an attempt is made to find
+the function name by looking at the function's +toString+.
+
++buster.format.ascii.func(func)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Formats a function like "function [name]() {}". The name is retrieved from
++buster.format.ascii.functionName+.
+
++buster.format.ascii.array(array)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Formats an array as "[item1, item2, item3]" where each item is formatted with
++buster.format.ascii+. Circular references are represented in the resulting
+string as "[Circular]".
+
++buster.format.ascii.object(object)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Formats an object in a JSON-ish way. Properties are formatted in turn by
++buster.format.ascii+. If the object can be fully represented in 80 characters,
+it's formatted in one line. Otherwise, it's indented nicely over as many lines
+as necessary.
+
+Circular references are represented by "[Circular]".
+
+Objects created with custom constructors will be formatted as
++"[ConstructorName] { ... }". See <<customize,customize>> for how to influence
+which constructors are and are not formatted this way.
+
++buster.format.ascii.element(element)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Formats a DOM element as HTML source. Tag name is represented in lower-case and
+all attributes and their values are included. The element's content is included
+up to 20 characters. If the length exceeds 20 characters, it's truncated with a
+"[...]".
+
++buster.format.ascii.constructorName(object)+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Attempts to guess the name of the constructor that created the object. It does
+so by getting the name of +object.constructor+ using
++buster.format.ascii.functionName+. If a name is found,
++buster.format.ascii.excludeConstructors+ is consulted. This property is an
+array of strings and/or regular expressions. If the constructor name matches any
+of the elements in +excludeConstructors+, an empty string is returned, otherwise
+the name is returned.
+
+[[customize]]
+Customizing buster-object-format
+--------------------------------
+
+You can influence how *buster-object-format* formats objects created with custom
+constructors. You *can* set it through
++buster.format.ascii.excludeConstructors+, but the best way is to create a
+separate instance of +buster.format+ and set it through it. The property should
+be an array of strings and/or regular expressions.
+
+If an element in the array is a string, the constructor by this name is not
+added to its instances formatted strings. If an element is a regular expression,
+any constructor name matching it will not be added to a formatted object's
+string representation.
+
+The default property excludes the +Object+ constructor and single letter
+constructors (commonly used when creating +Object.create+ shims).
+
+[source,javascript]
+----
+function Person(name) {
+    this.name = name;
+}
+
+var person = new Person("Chris");
+
+console.log(buster.format.ascii(person));
+
+// Outputs
+// [Person] { name: "Chris" }
+
+var formatter = Object.create(buster.format);
+formatter.excludeConstructors = ["Object", /^.$/, "Person"];
+console.log(buster.format.ascii(person));
+
+// Outputs
+// { name: "Chris" }
+----
+
+[[license]]
+buster-object-format license
+----------------------------
+
+include::../LICENSE[]

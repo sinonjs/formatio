@@ -264,7 +264,7 @@ if (typeof require != "undefined") {
                 var element = document.createElement("div");
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
 
-                assert.equal("<div>Oh hi! I'm Christian [...]</div>",
+                assert.equal("<div>Oh hi! I'm Christian[...]</div>",
                              buster.format.ascii(element));
             },
 
@@ -275,7 +275,7 @@ if (typeof require != "undefined") {
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
                 var str = buster.format.ascii(element);
 
-                assert.ok(/<div (.*)>Oh hi! I'm Christian \[\.\.\.\]<\/div>/.test(str));
+                assert.ok(/<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/.test(str));
                 assert.ok(/lang="en"/.test(str));
                 assert.ok(/id="anid"/.test(str));
             }

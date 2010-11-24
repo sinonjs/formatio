@@ -3,7 +3,7 @@ if (typeof require != "undefined") {
     require.paths.unshift(__dirname + "/../deps/buster-util/lib/");
     var testCase = require("test_case").testCase;
     var assert = require("assert");
-    var buster = { format: require("ascii_format") };
+    var buster = { format: require("object-format") };
 }
 
 (function () {
@@ -223,6 +223,13 @@ if (typeof require != "undefined") {
             object.someProp.foo = object;
 
             assert.equal("{ someProp: { foo: [Circular] } }", buster.format.ascii(object));
+        },
+
+        "should format nested array nicely": function () {
+            var object = { people: ["Chris", "August"] };
+
+            assert.equal("{ people: [\"Chris\", \"August\"] }",
+                         buster.format.ascii(object));
         }
     });
 
@@ -257,7 +264,7 @@ if (typeof require != "undefined") {
                 var element = document.createElement("div");
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
 
-                assert.equal("<div>Oh hi! I'm Christian</div>",
+                assert.equal("<div>Oh hi! I'm Christian [...]</div>",
                              buster.format.ascii(element));
             },
 
@@ -268,7 +275,7 @@ if (typeof require != "undefined") {
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
                 var str = buster.format.ascii(element);
 
-                assert.ok(/<div (.*)>Oh hi! I'm Christian<\/div>/.test(str));
+                assert.ok(/<div (.*)>Oh hi! I'm Christian \[\.\.\.\]<\/div>/.test(str));
                 assert.ok(/lang="en"/.test(str));
                 assert.ok(/id="anid"/.test(str));
             }

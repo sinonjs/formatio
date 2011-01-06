@@ -1,9 +1,7 @@
 if (typeof require != "undefined") {
-    require.paths.unshift(__dirname + "/../lib/");
-    require.paths.unshift(__dirname + "/../deps/buster-util/lib/");
-    var testCase = require("test_case").testCase;
+    var testCase = require("buster-util/test-case");
     var assert = require("assert");
-    var buster = { format: require("object-format") };
+    var buster = { format: require("buster-object-format") };
 }
 
 (function () {

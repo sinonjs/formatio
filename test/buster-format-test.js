@@ -2,7 +2,7 @@ if (typeof require != "undefined") {
     var testCase = require("buster-util/test-case");
     var buster = {
         assert: require("buster-assert"),
-        format: require("buster-object-format")
+        format: require("buster-format")
     };
 }
 

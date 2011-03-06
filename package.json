@@ -1,0 +1,8 @@
+{
+    "name": "buster-format",
+    "version": "0.1.0",
+    "main": "./lib/buster-format",
+    "dependencies": {
+        "buster-util": "*"
+    }
+}

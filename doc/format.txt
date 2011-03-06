@@ -2,18 +2,20 @@ Buster Object Format 0.1.0 documentation
 ========================================
 :Author: Christian Johansen
 :Email: christian@cjohansen.no
+:Author: August Lilleaas
+:Email: august.lilleaas@gmail.com
 
 Utility functions with helpers for pretty formatting of arbitrary JavaScript
 values. Currently only supports ascii formatting, suitable for command line
 utilities. Like +JSON.stringify+ it formats objects recursively, but unlike
 +JSON.stringify+, it can handle regular expressions, functions and more.
 
-*buster-object-format* works in browsers and on Node.js.
+*buster-format* works in browsers and on Node.js.
 
 Table of contents
 -----------------
 * <<ascii,Ascii formatting>>
-* <<customize,Customizing buster-object-format>>
+* <<customize,Customizing buster-format>>
 * <<license,License (BSD)>>
 
 [[ascii]]
@@ -35,7 +37,7 @@ Simple object
 [source,javascript]
 ----
 var sys = require("sys");
-var format = require("object-format");
+var format = require("format");
 
 var object = {
     name: "Christian"
@@ -53,7 +55,7 @@ Complex object
 [source,javascript]
 ----
 var sys = require("sys");
-var format = require("object-format");
+var format = require("format");
 
 var developer = {
     name: "Christian",
@@ -95,7 +97,7 @@ sys.puts(format.ascii(developer));
 Custom constructor
 ^^^^^^^^^^^^^^^^^^
 
-If the object to format is not a generic +Object+ object, *buster-object-format*
+If the object to format is not a generic +Object+ object, *buster-format*
 displays the type of object (i.e. name of constructor). For information on how
 to control what constructors will and will not be displayed, see
 <<customize,customizing>>.
@@ -103,7 +105,7 @@ to control what constructors will and will not be displayed, see
 [source,javascript]
 ----
 var sys = require("sys");
-var format = require("object-format");
+var format = require("format");
 
 function Person(name) {
     this.name = name;
@@ -193,10 +195,10 @@ of the elements in +excludeConstructors+, an empty string is returned, otherwise
 the name is returned.
 
 [[customize]]
-Customizing buster-object-format
---------------------------------
+Customizing buster-format
+-------------------------
 
-You can influence how *buster-object-format* formats objects created with custom
+You can influence how *buster-format* formats objects created with custom
 constructors. You *can* set it through
 +buster.format.ascii.excludeConstructors+, but the best way is to create a
 separate instance of +buster.format+ and set it through it. The property should
@@ -239,7 +241,7 @@ console.log(buster.format.ascii(person));
 ----
 
 [[license]]
-buster-object-format license
-----------------------------
+buster-format license
+---------------------
 
 include::../LICENSE[]

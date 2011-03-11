@@ -212,6 +212,25 @@ if (typeof require != "undefined") {
             buster.assert.equals("{ name: \"Mr. Garrison\" }", formatter.ascii(pervert));
         },
 
+        "should exclude constructors when run on other objects": function () {
+            function Person(name) {
+                this.name = name;
+            }
+
+            var person = new Person("Christian");
+            var formatter = { ascii: buster.format.ascii };
+            formatter.excludeConstructors = ["Person"];
+
+            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+        },
+
+        "should exclude default constructors when run on other objects": function () {
+            var person = { name: "Christian" };
+            var formatter = { ascii: buster.format.ascii };
+
+            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+        },
+
         "should not trip on circular formatting": function () {
             var object = {};
             object.foo = object;

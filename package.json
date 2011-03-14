@@ -1,8 +1,24 @@
 {
     "name": "buster-format",
     "version": "0.2.0",
+    "description": "Tools for formatting JavaScript objects in a human-readable way"
+    "homepage": "http://busterjs.org/buster-format",
+    "author": {
+        "name": "Christian Johansen",
+        "email": "christian@cjohansen.no",
+        "url": "http://cjohansen.no"
+    },
+    "contributors": [{
+        "name": "August Lilleaas",
+        "email": "august.lilleaas@gmail.com",
+        "url": "http://augustl.com"
+    }],
     "main": "./lib/buster-format",
+    "repository": {
+        "type": "git",
+        "url": "http://git.gitorious.org/buster-js/buster-format.git"
+    },
     "dependencies": {
-        "buster-core": "*"
+        "buster-core": "~0.2"
     }
 }

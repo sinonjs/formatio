@@ -2,8 +2,6 @@ Buster Object Format 0.2.0 documentation
 ========================================
 :Author: Christian Johansen
 :Email: christian@cjohansen.no
-:Author: August Lilleaas
-:Email: august.lilleaas@gmail.com
 
 Utility functions with helpers for pretty formatting of arbitrary JavaScript
 values. Currently only supports ascii formatting, suitable for command line

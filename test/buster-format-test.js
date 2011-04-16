@@ -253,6 +253,22 @@ if (typeof require != "undefined") {
         }
     });
 
+    testCase("UnquotedStringsTest", {
+        setUp: function () {
+            this.formatter = create(buster.format);
+            this.formatter.quoteStrings = false;
+        },
+
+        "should not quote strings": function () {
+            buster.assert.equals("Hey there", this.formatter.ascii("Hey there"));
+        },
+
+        "should quote string properties": function () {
+            var obj = { hey: "Mister" };
+            buster.assert.equals("{ hey: \"Mister\" }", this.formatter.ascii(obj));
+        }
+    });
+
     if (typeof document != "undefined") {
         testCase("AsciiFormatDOMElementTest", {
             "should format dom element": function () {

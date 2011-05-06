@@ -1,9 +1,8 @@
 if (typeof require != "undefined") {
-    var testCase = require("buster-util").testCase;
-
     var buster = {
         assert: require("buster-assert"),
-        format: require("../lib/buster-format")
+        format: require("../lib/buster-format"),
+        util: require("buster-util")
     };
 }
 
@@ -15,7 +14,7 @@ if (typeof require != "undefined") {
         return new F();
     };
 
-    testCase("AsciiFormatTest", {
+    buster.util.testCase("AsciiFormatTest", {
         "should format strings with quotes": function () {
             buster.assert.equals('"A string"', buster.format.ascii("A string"));
         },
@@ -253,7 +252,7 @@ if (typeof require != "undefined") {
         }
     });
 
-    testCase("UnquotedStringsTest", {
+    buster.util.testCase("UnquotedStringsTest", {
         setUp: function () {
             this.formatter = create(buster.format);
             this.formatter.quoteStrings = false;
@@ -270,7 +269,7 @@ if (typeof require != "undefined") {
     });
 
     if (typeof document != "undefined") {
-        testCase("AsciiFormatDOMElementTest", {
+        buster.util.testCase("AsciiFormatDOMElementTest", {
             "should format dom element": function () {
                 var element = document.createElement("div");
 

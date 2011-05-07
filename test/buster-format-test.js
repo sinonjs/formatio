@@ -292,7 +292,7 @@ if (typeof require != "undefined") {
                 element.innerHTML = "Oh hi!";
 
                 buster.assert.equals("<div>Oh hi!</div>",
-                             buster.format.ascii(element));
+                                     buster.format.ascii(element));
             },
 
             "should truncate dom element content": function () {

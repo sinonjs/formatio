@@ -7,3 +7,6 @@
 [submodule "node_modules/buster-core"]
 	path = node_modules/buster-core
 	url = git://gitorious.org/buster/buster-core.git
+[submodule "node_modules/sinon"]
+	path = node_modules/sinon
+	url = git://github.com/cjohansen/Sinon.JS.git

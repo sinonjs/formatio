@@ -20,5 +20,9 @@
     },
     "dependencies": {
         "buster-core": "~0.2"
+    },
+    "devDependencies": {
+        "buster-assert": "*",
+        "buster-util": "*"
     }
 }

@@ -1,6 +1,6 @@
 if (typeof require != "undefined") {
     var buster = {
-        assert: require("buster-assert"),
+        assertions: require("buster-assertions"),
         format: require("../lib/buster-format"),
         util: require("buster-util")
     };
@@ -14,47 +14,49 @@ if (typeof require != "undefined") {
         return new F();
     };
 
+    var assert = buster.assertions.assert;
+
     buster.util.testCase("AsciiFormatTest", {
         "should format strings with quotes": function () {
-            buster.assert.equals('"A string"', buster.format.ascii("A string"));
+            assert.equals('"A string"', buster.format.ascii("A string"));
         },
 
         "should format booleans without quotes": function () {
-            buster.assert.equals("true", buster.format.ascii(true));
-            buster.assert.equals("false", buster.format.ascii(false));
+            assert.equals("true", buster.format.ascii(true));
+            assert.equals("false", buster.format.ascii(false));
         },
 
         "should format null and undefined without quotes": function () {
-            buster.assert.equals("null", buster.format.ascii(null));
-            buster.assert.equals("undefined", buster.format.ascii(undefined));
+            assert.equals("null", buster.format.ascii(null));
+            assert.equals("undefined", buster.format.ascii(undefined));
         },
 
         "should format numbers without quotes": function () {
-            buster.assert.equals("3", buster.format.ascii(3));
-            buster.assert.equals("3987.56", buster.format.ascii(3987.56));
-            buster.assert.equals("-980", buster.format.ascii(-980.0));
-            buster.assert.equals("NaN", buster.format.ascii(NaN));
-            buster.assert.equals("Infinity", buster.format.ascii(Infinity));
-            buster.assert.equals("-Infinity", buster.format.ascii(-Infinity));
+            assert.equals("3", buster.format.ascii(3));
+            assert.equals("3987.56", buster.format.ascii(3987.56));
+            assert.equals("-980", buster.format.ascii(-980.0));
+            assert.equals("NaN", buster.format.ascii(NaN));
+            assert.equals("Infinity", buster.format.ascii(Infinity));
+            assert.equals("-Infinity", buster.format.ascii(-Infinity));
         },
 
         "should format regexp using toString": function () {
-            buster.assert.equals("/[a-zA-Z0-9]+\\.?/", buster.format.ascii(/[a-zA-Z0-9]+\.?/));
+            assert.equals("/[a-zA-Z0-9]+\\.?/", buster.format.ascii(/[a-zA-Z0-9]+\.?/));
         },
 
         "should format functions with name": function () {
-            buster.assert.equals("function doIt() {}", buster.format.ascii(function doIt() {}));
+            assert.equals("function doIt() {}", buster.format.ascii(function doIt() {}));
         },
 
         "should format functions without name": function () {
-            buster.assert.equals("function () {}", buster.format.ascii(function () {}));
+            assert.equals("function () {}", buster.format.ascii(function () {}));
         },
 
         "should format functions with display name": function () {
             function doIt() {}
             doIt.displayName = "ohHai";
 
-            buster.assert.equals("function ohHai() {}", buster.format.ascii(doIt));
+            assert.equals("function ohHai() {}", buster.format.ascii(doIt));
         },
 
         "should shorten functions with long bodies": function () {
@@ -65,14 +67,14 @@ if (typeof require != "undefined") {
                 }
             }
 
-            buster.assert.equals("function doIt() {}", buster.format.ascii(doIt));
+            assert.equals("function doIt() {}", buster.format.ascii(doIt));
         },
 
         "should format functions with no name or display name": function () {
             function doIt() {}
             doIt.name = "";
 
-            buster.assert.equals("function doIt() {}", buster.format.ascii(doIt));
+            assert.equals("function doIt() {}", buster.format.ascii(doIt));
         },
 
         "should format arrays": function () {
@@ -81,10 +83,10 @@ if (typeof require != "undefined") {
             var array = ["String", 123, /a-z/, null];
 
             var str = buster.format.ascii(array);
-            buster.assert.equals('["String", 123, /a-z/, null]', str);
+            assert.equals('["String", 123, /a-z/, null]', str);
 
             str = buster.format.ascii([ohNo, array]);
-            buster.assert.equals('[function ohNo() {}, ["String", 123, /a-z/, null]]', str);
+            assert.equals('[function ohNo() {}, ["String", 123, /a-z/, null]]', str);
         },
 
         "should not trip on circular arrays": function () {
@@ -92,7 +94,7 @@ if (typeof require != "undefined") {
             array.push(array);
 
             var str = buster.format.ascii(array);
-            buster.assert.equals('["String", 123, /a-z/, [Circular]]', str);
+            assert.equals('["String", 123, /a-z/, [Circular]]', str);
         },
 
         "should format object": function () {
@@ -111,7 +113,7 @@ if (typeof require != "undefined") {
                 "\"Gimme some more\",\n  prop: \"Some\"," +
                 "\n  seriously: \"many properties\"\n}";
 
-            buster.assert.equals(expected, buster.format.ascii(object));
+            assert.equals(expected, buster.format.ascii(object));
         },
 
         "should format short object on one line": function () {
@@ -122,7 +124,7 @@ if (typeof require != "undefined") {
             };
 
             var expected = "{ hello: function () {}, id: 42, prop: \"Some\" }";
-            buster.assert.equals(expected, buster.format.ascii(object));
+            assert.equals(expected, buster.format.ascii(object));
         },
 
         "should format nested object": function () {
@@ -140,7 +142,7 @@ if (typeof require != "undefined") {
                 ": { num: 23, string: \"Here you go you little mister\"" +
                 " },\n  prop: \"Some\"\n}";
 
-            buster.assert.equals(expected, buster.format.ascii(object));
+            assert.equals(expected, buster.format.ascii(object));
         },
 
         "should include constructor if known and not Object": function () {
@@ -150,7 +152,7 @@ if (typeof require != "undefined") {
 
             var person = new Person("Christian");
 
-            buster.assert.equals("[Person] { name: \"Christian\" }", buster.format.ascii(person));
+            assert.equals("[Person] { name: \"Christian\" }", buster.format.ascii(person));
         },
 
         "should not include one letter constructors": function () {
@@ -160,7 +162,7 @@ if (typeof require != "undefined") {
 
             var person = new F("Christian");
 
-            buster.assert.equals("{ name: \"Christian\" }", buster.format.ascii(person));
+            assert.equals("{ name: \"Christian\" }", buster.format.ascii(person));
         },
 
         "should include one letter constructors when configured to do so": function () {
@@ -172,7 +174,7 @@ if (typeof require != "undefined") {
             var formatter = create(buster.format);
             formatter.excludeConstructors = [];
 
-            buster.assert.equals("[C] { name: \"Christian\" }", formatter.ascii(person));
+            assert.equals("[C] { name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should exclude constructors when configured to do so": function () {
@@ -184,7 +186,7 @@ if (typeof require != "undefined") {
             var formatter = create(buster.format);
             formatter.excludeConstructors = ["Person"];
 
-            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should exclude constructors by pattern when configured to do so": function () {
@@ -206,9 +208,9 @@ if (typeof require != "undefined") {
             var formatter = create(buster.format);
             formatter.excludeConstructors = [/^Per/];
 
-            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
-            buster.assert.equals("[Ninja] { name: \"Haruhachi\" }", formatter.ascii(ninja));
-            buster.assert.equals("{ name: \"Mr. Garrison\" }", formatter.ascii(pervert));
+            assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equals("[Ninja] { name: \"Haruhachi\" }", formatter.ascii(ninja));
+            assert.equals("{ name: \"Mr. Garrison\" }", formatter.ascii(pervert));
         },
 
         "should exclude constructors when run on other objects": function () {
@@ -220,34 +222,34 @@ if (typeof require != "undefined") {
             var formatter = { ascii: buster.format.ascii };
             formatter.excludeConstructors = ["Person"];
 
-            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should exclude default constructors when run on other objects": function () {
             var person = { name: "Christian" };
             var formatter = { ascii: buster.format.ascii };
 
-            buster.assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
+            assert.equals("{ name: \"Christian\" }", formatter.ascii(person));
         },
 
         "should not trip on circular formatting": function () {
             var object = {};
             object.foo = object;
 
-            buster.assert.equals("{ foo: [Circular] }", buster.format.ascii(object));
+            assert.equals("{ foo: [Circular] }", buster.format.ascii(object));
         },
 
         "should not trip on indirect circular formatting": function () {
             var object = { someProp: {} };
             object.someProp.foo = object;
 
-            buster.assert.equals("{ someProp: { foo: [Circular] } }", buster.format.ascii(object));
+            assert.equals("{ someProp: { foo: [Circular] } }", buster.format.ascii(object));
         },
 
         "should format nested array nicely": function () {
             var object = { people: ["Chris", "August"] };
 
-            buster.assert.equals("{ people: [\"Chris\", \"August\"] }",
+            assert.equals("{ people: [\"Chris\", \"August\"] }",
                          buster.format.ascii(object));
         }
     });
@@ -259,12 +261,12 @@ if (typeof require != "undefined") {
         },
 
         "should not quote strings": function () {
-            buster.assert.equals("Hey there", this.formatter.ascii("Hey there"));
+            assert.equals("Hey there", this.formatter.ascii("Hey there"));
         },
 
         "should quote string properties": function () {
             var obj = { hey: "Mister" };
-            buster.assert.equals("{ hey: \"Mister\" }", this.formatter.ascii(obj));
+            assert.equals("{ hey: \"Mister\" }", this.formatter.ascii(obj));
         }
     });
 
@@ -273,7 +275,7 @@ if (typeof require != "undefined") {
             "should format dom element": function () {
                 var element = document.createElement("div");
 
-                buster.assert.equals("<div></div>", buster.format.ascii(element));
+                assert.equals("<div></div>", buster.format.ascii(element));
             },
 
             "should format dom element with attributes": function () {
@@ -282,16 +284,16 @@ if (typeof require != "undefined") {
                 element.id = "ohyeah";
                 var str = buster.format.ascii(element);
 
-                buster.assert(/<div (.*)><\/div>/.test(str));
-                buster.assert(/class="hey there"/.test(str));
-                buster.assert(/id="ohyeah"/.test(str));
+                assert(str, /<div (.*)><\/div>/);
+                assert(str, /class="hey there"/);
+                assert(str, /id="ohyeah"/);
             },
 
             "should format dom element with content": function () {
                 var element = document.createElement("div");
                 element.innerHTML = "Oh hi!";
 
-                buster.assert.equals("<div>Oh hi!</div>",
+                assert.equals("<div>Oh hi!</div>",
                                      buster.format.ascii(element));
             },
 
@@ -299,7 +301,7 @@ if (typeof require != "undefined") {
                 var element = document.createElement("div");
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
 
-                buster.assert.equals("<div>Oh hi! I'm Christian[...]</div>",
+                assert.equals("<div>Oh hi! I'm Christian[...]</div>",
                              buster.format.ascii(element));
             },
 
@@ -310,9 +312,9 @@ if (typeof require != "undefined") {
                 element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
                 var str = buster.format.ascii(element);
 
-                buster.assert(/<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/.test(str));
-                buster.assert(/lang="en"/.test(str));
-                buster.assert(/id="anid"/.test(str));
+                assert(str, /<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/);
+                assert(str, /lang="en"/);
+                assert(str, /id="anid"/);
             }
         });
     }

@@ -22,7 +22,7 @@
         "buster-core": "~0.2"
     },
     "devDependencies": {
-        "buster-assert": "*",
+        "buster-assertions": "*",
         "buster-util": "*"
     }
 }

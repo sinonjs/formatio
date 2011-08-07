@@ -1,9 +1,12 @@
-[submodule "node_modules/buster-util"]
-	path = node_modules/buster-util
+[submodule "vendor/buster-util"]
+	path = vendor/buster-util
 	url = git://gitorious.org/buster/buster-util.git
-[submodule "node_modules/buster-core"]
-	path = node_modules/buster-core
-	url = git://gitorious.org/buster/buster-core.git
-[submodule "node_modules/buster-assertions"]
-	path = node_modules/buster-assertions
+[submodule "vendor/buster-assert"]
+	path = vendor/buster-assert
 	url = git://gitorious.org/buster/buster-assert.git
+[submodule "vendor/buster-core"]
+	path = vendor/buster-core
+	url = git://gitorious.org/buster/buster-core.git
+[submodule "vendor/sinon"]
+	path = vendor/sinon
+	url = git://github.com/cjohansen/Sinon.JS.git

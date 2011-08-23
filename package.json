@@ -1,6 +1,6 @@
 {
     "name": "buster-format",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Tools for formatting JavaScript objects in a human-readable way",
     "homepage": "http://busterjs.org/docs/buster-format",
     "author": {
@@ -19,11 +19,11 @@
         "url": "git://gitorious.org/buster/buster-format.git"
     },
     "dependencies": {
-        "buster-core": "~>0.3"
+        "buster-core": "~0.3.1"
     },
     "devDependencies": {
-        "buster-assertions": "~>0.6",
-        "buster-util": "~>0.3",
-        "sinon": "~>1.1"
+        "buster-assertions": "~0.6",
+        "buster-util": "~0.3",
+        "sinon": "~1.1"
     }
 }

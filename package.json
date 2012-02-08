@@ -19,11 +19,11 @@
         "url": "git://gitorious.org/buster/buster-format.git"
     },
     "dependencies": {
-        "buster-core": "~0.5"
+        "buster-core": ">=0.5.1"
     },
     "devDependencies": {
-        "buster-assertions": "~0.8",
-        "buster-util": "~0.4",
-        "sinon": "~1.3"
+        "buster-assertions": ">=0.9",
+        "buster-util": ">=0.5",
+        "sinon": ">=1.3"
     }
 }

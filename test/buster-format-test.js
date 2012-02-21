@@ -127,6 +127,11 @@ if (typeof module === "object" && typeof require === "function") {
             assert.equals(expected, buster.format.ascii(object));
         },
 
+        "should format object with a non-function toString": function () {
+            var object = { toString: 42 };
+            assert.equals("{ toString: 42 }", buster.format.ascii(object));
+        },
+
         "should format nested object": function () {
             var object = {
                 id: 42,

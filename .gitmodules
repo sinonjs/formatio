@@ -1,12 +1,12 @@
 [submodule "vendor/buster-util"]
 	path = vendor/buster-util
-	url = git://gitorious.org/buster/buster-util.git
+	url = https://git.gitorious.org/buster/buster-util.git
 [submodule "vendor/buster-assert"]
 	path = vendor/buster-assert
-	url = git://gitorious.org/buster/buster-assert.git
+	url = https://git.gitorious.org/buster/buster-assert.git
 [submodule "vendor/buster-core"]
 	path = vendor/buster-core
-	url = git://gitorious.org/buster/buster-core.git
+	url = https://git.gitorious.org/buster/buster-core.git
 [submodule "vendor/sinon"]
 	path = vendor/sinon
-	url = git://github.com/cjohansen/Sinon.JS.git
+	url = https://github.com/cjohansen/Sinon.JS.git

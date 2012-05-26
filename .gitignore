@@ -1,2 +1,3 @@
-test/test.html
+*.log
 node_modules
+test/test.html

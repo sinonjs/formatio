@@ -333,8 +333,8 @@ if (typeof module === "object" && typeof require === "function") {
             },
 
             "should format document object as toString": function () {
-		var str;
-		buster.assertions.refute.exception(function () {
+                var str;
+                buster.assertions.refute.exception(function () {
                     str = buster.format.ascii(document);
                 });
 
@@ -342,8 +342,8 @@ if (typeof module === "object" && typeof require === "function") {
             },
 
             "should format window object as toString": function () {
-		var str;
-		buster.assertions.refute.exception(function () {
+                var str;
+                buster.assertions.refute.exception(function () {
                     str = buster.format.ascii(window);
                 });
 
@@ -355,8 +355,8 @@ if (typeof module === "object" && typeof require === "function") {
     if (typeof global != "undefined") {
         buster.util.testCase("AsciiFormatGlobalTest", {
             "should format global object as toString": function () {
-		var str;
-		buster.assertions.refute.exception(function () {
+                var str;
+                buster.assertions.refute.exception(function () {
                     str = buster.format.ascii(global);
                 });
 
@@ -365,3 +365,4 @@ if (typeof module === "object" && typeof require === "function") {
         });
     }
 }());
+

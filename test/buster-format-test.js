@@ -256,8 +256,18 @@ if (typeof module === "object" && typeof require === "function") {
 
             assert.equals("{ people: [\"Chris\", \"August\"] }",
                          buster.format.ascii(object));
+        },
+
+        "should not rely on object's hasOwnProperty": function () {
+            var Proto = function () { this.hasOwnProperty = undefined }
+            var Obj = function () { }
+            Obj.prototype = new Proto();
+            var object = new Obj();
+
+            assert.equals("{  }", buster.format.ascii(object));
         }
     });
+
 
     buster.util.testCase("UnquotedStringsTest", {
         setUp: function () {
@@ -320,6 +330,37 @@ if (typeof module === "object" && typeof require === "function") {
                 assert(str, /<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/);
                 assert(str, /lang="en"/);
                 assert(str, /id="anid"/);
+            },
+
+            "should format document object as toString": function () {
+		var str;
+		buster.assertions.refute.exception(function () {
+                    str = buster.format.ascii(document);
+                });
+
+                assert.equals("[object HTMLDocument]", str);
+            },
+
+            "should format window object as toString": function () {
+		var str;
+		buster.assertions.refute.exception(function () {
+                    str = buster.format.ascii(window);
+                });
+
+                assert.equals("[object Window]", str);
+            }
+        });
+    }
+
+    if (typeof global != "undefined") {
+        buster.util.testCase("AsciiFormatGlobalTest", {
+            "should format global object as toString": function () {
+		var str;
+		buster.assertions.refute.exception(function () {
+                    str = buster.format.ascii(global);
+                });
+
+                assert.equals("[object global]", str);
             }
         });
     }

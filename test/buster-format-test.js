@@ -259,9 +259,10 @@ if (typeof module === "object" && typeof require === "function") {
         },
 
         "should not rely on object's hasOwnProperty": function () {
-            var Proto = function () { this.hasOwnProperty = undefined }
-            var Obj = function () { }
-            Obj.prototype = new Proto();
+            // Create object with no "own" properties to get past
+            //  Object.keys test and no .hasOwnProperty() function
+            var Obj = function () {};
+            Obj.prototype = { hasOwnProperty: undefined };
             var object = new Obj();
 
             assert.equals("{  }", buster.format.ascii(object));

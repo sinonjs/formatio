@@ -1,6 +1,6 @@
 {
     "name": "buster-format",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "description": "Tools for formatting JavaScript objects in a human-readable way",
     "homepage": "http://busterjs.org/docs/buster-format",
     "author": {
@@ -22,10 +22,10 @@
         "test": "./run-tests"
     },
     "dependencies": {
-        "buster-core": ">=0.6.0"
+        "buster-core": ">=0.6.2"
     },
     "devDependencies": {
-        "buster-assertions": ">=0.10",
+        "buster-assertions": ">=0.10.2",
         "buster-util": ">=0.5",
         "sinon": ">=1.3"
     }

@@ -269,7 +269,6 @@ if (typeof module === "object" && typeof require === "function") {
         }
     });
 
-
     buster.util.testCase("UnquotedStringsTest", {
         setUp: function () {
             this.formatter = create(buster.format);

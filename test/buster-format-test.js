@@ -15,6 +15,7 @@ if (typeof module === "object" && typeof require === "function") {
     };
 
     var assert = buster.assertions.assert;
+    var refute = buster.assertions.refute;
 
     buster.util.testCase("AsciiFormatTest", {
         "should format strings with quotes": function () {
@@ -266,6 +267,17 @@ if (typeof module === "object" && typeof require === "function") {
             var object = new Obj();
 
             assert.equals("{  }", buster.format.ascii(object));
+        },
+
+        "handles cyclic structures": function () {
+            var obj = {};
+            obj.list1 = [obj];
+            obj.list2 = [obj];
+            obj.list3 = [{ prop: obj }];
+
+            refute.exception(function () {
+                buster.format.ascii(obj);
+            });
         }
     });
 

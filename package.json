@@ -1,6 +1,6 @@
 {
     "name": "buster-format",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "description": "Tools for formatting JavaScript objects in a human-readable way",
     "homepage": "http://busterjs.org/docs/buster-format",
     "author": {

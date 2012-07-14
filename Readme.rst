@@ -5,6 +5,8 @@
 formatio
 ========
 
+    *formatio*, the cheesy object formatter
+
 .. raw:: html
 
     <a href="http://travis-ci.org/busterjs/formatio" class="travis">

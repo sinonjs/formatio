@@ -5,7 +5,7 @@
 formatio
 ========
 
-    *formatio*, the cheesy object formatter
+    The cheesy object formatter
 
 .. raw:: html
 

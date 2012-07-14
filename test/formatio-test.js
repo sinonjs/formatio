@@ -1,12 +1,11 @@
-if (typeof module === "object" && typeof require === "function") {
-    var buster = {
+(typeof module === "object" && typeof require === "function" && function (t) {
+    t({
         assertions: require("buster-assertions"),
         util: require("buster-util")
-    };
-    var formatio = require("../lib/formatio");
-}
-
-(function () {
+    }, require("../lib/formatio"));
+} || function (t) {
+    t(buster, formatio);
+})(function (buster, formatio) {
     function F() {}
 
     var create = Object.create || function (object) {
@@ -375,5 +374,4 @@ if (typeof module === "object" && typeof require === "function") {
             }
         });
     }
-}());
-
+});

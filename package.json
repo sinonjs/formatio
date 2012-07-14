@@ -1,8 +1,8 @@
 {
-    "name": "buster-format",
-    "version": "0.5.5",
-    "description": "Tools for formatting JavaScript objects in a human-readable way",
-    "homepage": "http://busterjs.org/docs/buster-format",
+    "name": "formatio",
+    "version": "0.6.0",
+    "description": "Human-readable object formatting",
+    "homepage": "http://busterjs.org/docs/formatio/",
     "author": {
         "name": "Christian Johansen",
         "email": "christian@cjohansen.no",
@@ -13,20 +13,21 @@
         "email": "august.lilleaas@gmail.com",
         "url": "http://augustl.com"
     }],
-    "main": "./lib/buster-format",
+    "main": "./lib/formatio",
     "repository": {
         "type": "git",
-        "url": "git://gitorious.org/buster/buster-format.git"
+        "url": "https://github.com/busterjs/formatio.git"
     },
     "scripts": {
         "test": "./run-tests"
     },
     "dependencies": {
-        "buster-core": ">=0.6.2"
+        "samsam": "~0.1"
     },
     "devDependencies": {
-        "buster-assertions": ">=0.10.2",
-        "buster-util": ">=0.5",
-        "sinon": ">=1.3"
+        "buster-core": "~0.6",
+        "buster-assertions": "~0.10",
+        "buster-util": "~0.5",
+        "sinon": "~1.3"
     }
 }

@@ -1,6 +1,7 @@
-(typeof module === "object" && typeof require === "function" && function (t) {
+/*global formatio*/
+((typeof module === "object" && typeof require === "function" && function (t) {
     t(require("buster"), require("../lib/formatio"));
-} || function (t) {
+}) || function (t) {
     t(buster, formatio);
 })(function (buster, formatio) {
     buster.testCase("formatio.ascii", {
@@ -28,11 +29,13 @@
         },
 
         "formats regexp using toString": function () {
-            assert.equals(formatio.ascii(/[a-zA-Z0-9]+\.?/), "/[a-zA-Z0-9]+\\.?/");
+            assert.equals(formatio.ascii(/[a-zA-Z0-9]+\.?/),
+                          "/[a-zA-Z0-9]+\\.?/");
         },
 
         "formats functions with name": function () {
-            assert.equals(formatio.ascii(function doIt() {}), "function doIt() {}");
+            var fn = function doIt() {};
+            assert.equals(formatio.ascii(fn), "function doIt() {}");
         },
 
         "formats functions without name": function () {
@@ -50,8 +53,7 @@
             function doIt() {
                 var i;
                 function hey() {}
-                for (; i < 10; i++) {
-                }
+                for (i = 0; i < 10; i++) { console.log(i); }
             }
 
             assert.equals(formatio.ascii(doIt), "function doIt() {}");
@@ -73,7 +75,8 @@
             assert.equals(str, '["String", 123, /a-z/, null]');
 
             str = formatio.ascii([ohNo, array]);
-            assert.equals(str, '[function ohNo() {}, ["String", 123, /a-z/, null]]');
+            assert.equals(str,
+                          '[function ohNo() {}, ["String", 123, /a-z/, null]]');
         },
 
         "does not trip on circular arrays": function () {
@@ -144,7 +147,8 @@
 
             var person = new Person("Christian");
 
-            assert.equals(formatio.ascii(person), "[Person] { name: \"Christian\" }");
+            assert.equals(formatio.ascii(person),
+                          "[Person] { name: \"Christian\" }");
         },
 
         "does not include one letter constructors": function () {
@@ -157,7 +161,7 @@
             assert.equals(formatio.ascii(person), "{ name: \"Christian\" }");
         },
 
-        "includes one letter constructors when configured to do so": function () {
+        "includes one letter constructors when configured so": function () {
             function C(name) {
                 this.name = name;
             }
@@ -166,7 +170,8 @@
             var formatter = buster.create(formatio);
             formatter.excludeConstructors = [];
 
-            assert.equals(formatter.ascii(person), "[C] { name: \"Christian\" }");
+            assert.equals(formatter.ascii(person),
+                          "[C] { name: \"Christian\" }");
         },
 
         "excludes constructors when configured to do so": function () {
@@ -181,7 +186,7 @@
             assert.equals(formatter.ascii(person), "{ name: \"Christian\" }");
         },
 
-        "excludes constructors by pattern when configured to do so": function () {
+        "excludes constructors by pattern when configured so": function () {
             function Person(name) { this.name = name; }
             function Ninja(name) { this.name = name; }
             function Pervert(name) { this.name = name; }
@@ -193,8 +198,10 @@
             formatter.excludeConstructors = [/^Per/];
 
             assert.equals(formatter.ascii(person), "{ name: \"Christian\" }");
-            assert.equals(formatter.ascii(ninja), "[Ninja] { name: \"Haruhachi\" }");
-            assert.equals(formatter.ascii(pervert), "{ name: \"Mr. Garrison\" }");
+            assert.equals(formatter.ascii(ninja),
+                          "[Ninja] { name: \"Haruhachi\" }");
+            assert.equals(formatter.ascii(pervert),
+                          "{ name: \"Mr. Garrison\" }");
         },
 
         "excludes constructors when run on other objects": function () {
@@ -225,7 +232,8 @@
             var object = { someProp: {} };
             object.someProp.foo = object;
 
-            assert.equals(formatio.ascii(object), "{ someProp: { foo: [Circular] } }");
+            assert.equals(formatio.ascii(object),
+                          "{ someProp: { foo: [Circular] } }");
         },
 
         "formats nested array nicely": function () {
@@ -301,7 +309,8 @@
 
             "truncates dom element content": function () {
                 var element = document.createElement("div");
-                element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
+                element.innerHTML = "Oh hi! I'm Christian, and this " +
+                                    "is a lot of content";
 
                 assert.equals(formatio.ascii(element),
                               "<div>Oh hi! I'm Christian[...]</div>");
@@ -311,10 +320,12 @@
                 var element = document.createElement("div");
                 element.id = "anid";
                 element.lang = "en";
-                element.innerHTML = "Oh hi! I'm Christian, and this is a lot of content";
+                element.innerHTML = "Oh hi! I'm Christian, and this " +
+                                    "is a lot of content";
                 var str = formatio.ascii(element);
 
-                assert.match(str, /<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/);
+                assert.match(str,
+                             /<div (.*)>Oh hi! I'm Christian\[\.\.\.\]<\/div>/);
                 assert.match(str, /lang="en"/);
                 assert.match(str, /id="anid"/);
             },

@@ -25,21 +25,15 @@ you want it to (i.e. if there's a ``define`` function available).
 Running tests
 =============
 
-Running tests on Node:
-
 ::
 
     npm test
 
-To run tests in the browser:
+Or use Buster.JS manually:
 
 ::
 
-    node_modules/buster-util/jstdhtml
-
-Open ``test/test.html`` in a browser
-
-You can also run JsTestDriver from the root directory.
+    node_modules/buster/bin/buster-test --help
 
 ``formatio.ascii`` API
 ======================

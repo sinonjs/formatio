@@ -26,6 +26,7 @@
             assert.equals(formatio.ascii(NaN), "NaN");
             assert.equals(formatio.ascii(Infinity), "Infinity");
             assert.equals(formatio.ascii(-Infinity), "-Infinity");
+            assert.equals(formatio.ascii(-0), "-0");
         },
 
         "formats regexp using toString": function () {

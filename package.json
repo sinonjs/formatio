@@ -3,15 +3,24 @@
     "version": "0.6.0",
     "description": "Human-readable object formatting",
     "homepage": "http://busterjs.org/docs/formatio/",
-    "author": {
+    "author": "Christian Johansen",
+    "contributors": [{
         "name": "Christian Johansen",
         "email": "christian@cjohansen.no",
         "url": "http://cjohansen.no"
-    },
-    "contributors": [{
+    }, {
         "name": "August Lilleaas",
         "email": "august.lilleaas@gmail.com",
         "url": "http://augustl.com"
+    }, {
+        "name": "Dave Geddes",
+        "email": "davidcgeddes@gmail.com"
+    }, {
+        "name": "Stein Magnus Jodal",
+        "email": "stein.magnus@jodal.no"
+    }, {
+        "name": "Tek Nynja",
+        "email": "github@teknynja.com"
     }],
     "main": "./lib/formatio",
     "repository": {

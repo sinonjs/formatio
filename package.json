@@ -28,7 +28,7 @@
         "url": "https://github.com/busterjs/formatio.git"
     },
     "scripts": {
-        "test": "./node_modules/buster/bin/buster-test"
+        "test": "node test/formatio-test.js"
     },
     "dependencies": {
         "samsam": "~0.1",

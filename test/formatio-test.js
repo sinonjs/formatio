@@ -168,8 +168,7 @@
             }
 
             var person = new C("Christian");
-            var formatter = buster.create(formatio);
-            formatter.excludeConstructors = [];
+            var formatter = formatio.configure({ excludeConstructors: [] });
 
             assert.equals(formatter.ascii(person),
                           "[C] { name: \"Christian\" }");
@@ -181,8 +180,7 @@
             }
 
             var person = new Person("Christian");
-            var formatter = buster.create(formatio);
-            formatter.excludeConstructors = ["Person"];
+            var formatter = formatio.configure({ excludeConstructors: ["Person"] });
 
             assert.equals(formatter.ascii(person), "{ name: \"Christian\" }");
         },
@@ -195,8 +193,7 @@
             var person = new Person("Christian");
             var ninja = new Ninja("Haruhachi");
             var pervert = new Pervert("Mr. Garrison");
-            var formatter = buster.create(formatio);
-            formatter.excludeConstructors = [/^Per/];
+            var formatter = formatio.configure({ excludeConstructors: [/^Per/] });
 
             assert.equals(formatter.ascii(person), "{ name: \"Christian\" }");
             assert.equals(formatter.ascii(ninja),
@@ -267,8 +264,7 @@
 
         "unquoted strings": {
             setUp: function () {
-                this.formatter = buster.create(formatio);
-                this.formatter.quoteStrings = false;
+                this.formatter = formatio.configure({ quoteStrings: false });
             },
 
             "does not quote strings": function () {

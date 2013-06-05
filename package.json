@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "samsam": "~0.1",
-        "lodash": "~0.4"
+        "lodash": "~1.0"
     },
     "devDependencies": {
         "buster": "0.6.11"

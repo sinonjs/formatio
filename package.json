@@ -1,6 +1,6 @@
 {
     "name": "formatio",
-    "version": "0.6.0",
+    "version": "1.0.0",
     "description": "Human-readable object formatting",
     "homepage": "http://busterjs.org/docs/formatio/",
     "author": "Christian Johansen",
@@ -31,7 +31,7 @@
         "test": "node test/formatio-test.js"
     },
     "dependencies": {
-        "samsam": "~0.1",
+        "samsam": "~1.0",
         "lodash": "~1.0"
     },
     "devDependencies": {

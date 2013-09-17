@@ -277,6 +277,18 @@
             }
         },
 
+        "numbers": {
+            "formats object with 0": function () {
+                var str = formatio.ascii({ me: 0 });
+                refute.match(str, "-0");
+            },
+
+            "formats object with -0": function () {
+                var str = formatio.ascii({ me: -0 });
+                assert.match(str, "-0");
+            }
+        },
+
         "DOM elements": {
             requiresSupportFor: { "DOM": typeof document !== "undefined" },
 

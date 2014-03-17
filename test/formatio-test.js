@@ -4,6 +4,10 @@
 }) || function (t) {
     t(buster, formatio);
 })(function (buster, formatio) {
+	
+	var assert = buster.referee.assert;
+	var refute = buster.referee.refute;
+	
     buster.testCase("formatio.ascii", {
         "formats strings with quotes": function () {
             assert.equals(formatio.ascii("A string"), '"A string"');

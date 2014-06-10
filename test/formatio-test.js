@@ -92,6 +92,66 @@
             assert.equals(str, '["String", 123, /a-z/, [Circular]]');
         },
 
+        "limit formated array length": {
+            setUp: function() {
+                this.array = new Array();
+                for (i = 0; i < 300; i++) {
+                    this.array[i] = i;
+                }
+            },
+
+            "should stop at given limit" : function () {
+                var configuredFormatio = formatio.configure(
+                    {limitChildrenCount : 30});
+                var str = configuredFormatio.ascii(this.array);
+                refute.contains(str, "30");
+                assert.contains(str, "29");
+            },
+
+            "should stop at default limit 100 if limitChildrenCount=true" : function () {
+                var configuredFormatio = formatio.configure(
+                    {limitChildrenCount : true});
+                var str = configuredFormatio.ascii(this.array);
+                refute.contains(str, "100");
+                assert.contains(str, "99");
+            },
+
+            "should format all array elements if no config is used" : function () {
+                var str = formatio.ascii(this.array);
+                assert.contains(str, "100");
+                assert.contains(str, "299]");
+            },
+        },
+
+        "limit count of formated object properties": {
+            setUp: function() {
+                this.testobject = {};
+                for (i = 0; i < 300; i++) {
+                    this.testobject[i.toString()] = i;
+                }
+            },
+
+            "should stop at given limit" : function () {
+                var configuredFormatio = formatio.configure(
+                    {limitChildrenCount : 30});
+                var str = configuredFormatio.ascii(this.testobject);
+                // returned formation may not be in the original order
+                assert.equals(30 + 2, str.split("\n").length);
+            },
+
+            "should stop at default limit 100 if limitChildrenCount=true" : function () {
+                var configuredFormatio = formatio.configure(
+                    {limitChildrenCount : true});
+                var str = configuredFormatio.ascii(this.testobject);
+                assert.equals(100 + 2, str.split("\n").length);
+            },
+
+            "should format all properties if no config is used" : function () {
+                var str = formatio.ascii(this.testobject);
+                assert.equals(300 + 2, str.split("\n").length);
+            },
+        },
+
         "formats object": function () {
             var object = {
                 id: 42,

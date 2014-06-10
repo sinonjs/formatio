@@ -106,6 +106,7 @@
                 var str = configuredFormatio.ascii(this.array);
                 refute.contains(str, "30");
                 assert.contains(str, "29");
+                assert.contains(str, "[... 270 more elements]");
             },
 
             "should stop at default limit 100 if limitChildrenCount=true" : function () {
@@ -120,6 +121,7 @@
                 var str = formatio.ascii(this.array);
                 assert.contains(str, "100");
                 assert.contains(str, "299]");
+                refute.contains(str, "[...");
             },
         },
 
@@ -136,14 +138,16 @@
                     {limitChildrenCount : 30});
                 var str = configuredFormatio.ascii(this.testobject);
                 // returned formation may not be in the original order
-                assert.equals(30 + 2, str.split("\n").length);
+                assert.equals(30 + 3, str.split("\n").length);
+                assert.contains(str, "[... 270 more elements]");
             },
 
             "should stop at default limit 100 if limitChildrenCount=true" : function () {
                 var configuredFormatio = formatio.configure(
                     {limitChildrenCount : true});
                 var str = configuredFormatio.ascii(this.testobject);
-                assert.equals(100 + 2, str.split("\n").length);
+                assert.equals(100 + 3, str.split("\n").length);
+                assert.contains(str, "[... 200 more elements]");
             },
 
             "should format all properties if no config is used" : function () {

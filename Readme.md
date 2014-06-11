@@ -195,6 +195,11 @@ Whether or not to quote simple strings. When set to `false`, simple strings
 are not quoted. Strings in arrays and objects will still be quoted, but
 `ascii("Some string")` will not gain additional quotes.
 
+### `limitChildrenCount(number)`
+
+This property allows to limit the number of printed array elements or object 
+properties. When set to 0, all elements will be included in output, any number
+greater than zero will set the limit to that number.
 
 ### `excludeConstructors (["Object", /^.$/])`
 

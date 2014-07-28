@@ -7,6 +7,27 @@
 	
 	var assert = buster.referee.assert;
 	var refute = buster.referee.refute;
+
+    function getArrayOfNumbers(size){            
+        var array = new Array(),
+            i;
+
+        for (i = 0; i < size; i++){
+            array[i] = i;
+        }
+        
+        return array
+    }
+
+    function getObjectWithManyProperties(size){
+        var object = {};
+
+        for (i = 0; i < size; i++) {
+            object[i.toString()] = i;
+        }
+
+        return object;
+    }
 	
     buster.testCase("formatio.ascii", {
         "formats strings with quotes": function () {
@@ -92,25 +113,36 @@
             assert.equals(str, '["String", 123, /a-z/, [Circular]]');
         },
 
-        "limit formated array length": {
-            setUp: function() {
-                this.array = new Array();
-                for (i = 0; i < 300; i++) {
-                    this.array[i] = i;
-                }
-            },
-
+        "limit formatted array length": {
             "should stop at given limit" : function () {
-                var configuredFormatio = formatio.configure(
-                    {limitChildrenCount : 30});
-                var str = configuredFormatio.ascii(this.array);
+                var array = getArrayOfNumbers(300);
+                var configuredFormatio = formatio.configure({
+                        limitChildrenCount : 30
+                    });
+                var str = configuredFormatio.ascii(array);
+
                 refute.contains(str, "30");
                 assert.contains(str, "29");
                 assert.contains(str, "[... 270 more elements]");
             },
 
+            "should only format as many elements as exists" : function(){
+                var array = getArrayOfNumbers(10);
+                    configuredFormatio = formatio.configure({
+                        limitChildrenCount : 30
+                    });
+                var str = configuredFormatio.ascii(array);
+
+                refute.contains(str, "10");
+                assert.contains(str, "9");
+                refute.contains(str, "undefined");
+                refute.contains(str, "[...");
+            },
+
             "should format all array elements if no config is used" : function () {
-                var str = formatio.ascii(this.array);
+                var array = getArrayOfNumbers(300);
+                var str = formatio.ascii(array);
+
                 assert.contains(str, "100");
                 assert.contains(str, "299]");
                 refute.contains(str, "[...");
@@ -126,16 +158,34 @@
             },
 
             "should stop at given limit" : function () {
-                var configuredFormatio = formatio.configure(
-                    {limitChildrenCount : 30});
-                var str = configuredFormatio.ascii(this.testobject);
+                var object = getObjectWithManyProperties(300);
+                    configuredFormatio = formatio.configure({
+                        limitChildrenCount : 30
+                    });
+                var str = configuredFormatio.ascii(object);
+
                 // returned formation may not be in the original order
                 assert.equals(30 + 3, str.split("\n").length);
                 assert.contains(str, "[... 270 more elements]");
             },
 
+            "should only format as many properties as exists" : function(){
+                var object = getObjectWithManyProperties(10);
+                    configuredFormatio = formatio.configure({
+                        limitChildrenCount : 30
+                    });
+                var str = configuredFormatio.ascii(object);
+
+                refute.contains(str, "10");
+                assert.contains(str, "9");
+                refute.contains(str, "undefined");
+                refute.contains(str, "[...");
+            },
+
             "should format all properties if no config is used" : function () {
-                var str = formatio.ascii(this.testobject);
+                var object = getObjectWithManyProperties(300);
+                var str = formatio.ascii(object);
+                
                 assert.equals(300 + 2, str.split("\n").length);
             },
         },

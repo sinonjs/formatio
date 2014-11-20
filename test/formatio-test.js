@@ -4,19 +4,18 @@
 }) || function (t) {
     t(buster, formatio);
 })(function (buster, formatio) {
-	
+
 	var assert = buster.referee.assert;
 	var refute = buster.referee.refute;
 
     function getArrayOfNumbers(size){            
-        var array = new Array(),
-            i;
+        var array = [];
 
-        for (i = 0; i < size; i++){
+        for (var i = 0; i < size; i++){
             array[i] = i;
         }
         
-        return array
+        return array;
     }
 
     function getObjectWithManyProperties(size){

@@ -7,7 +7,7 @@
     var assert = buster.referee.assert;
     var refute = buster.referee.refute;
 
-    function getArrayOfNumbers(size){
+    function range(size){
         var array = [];
 
         for (var i = 0; i < size; i++){
@@ -117,11 +117,10 @@
 
         "limit formatted array length": {
             "should stop at given limit" : function () {
-                var array = getArrayOfNumbers(300);
                 var configuredFormatio = formatio.configure({
                     limitChildrenCount : 30
                 });
-                var str = configuredFormatio.ascii(array);
+                var str = configuredFormatio.ascii(range(300));
 
                 refute.contains(str, "30");
                 assert.contains(str, "29");
@@ -129,11 +128,10 @@
             },
 
             "should only format as many elements as exists" : function(){
-                var array = getArrayOfNumbers(10);
                 var configuredFormatio = formatio.configure({
                     limitChildrenCount : 30
                 });
-                var str = configuredFormatio.ascii(array);
+                var str = configuredFormatio.ascii(range(10));
 
                 refute.contains(str, "10");
                 assert.contains(str, "9");
@@ -142,8 +140,7 @@
             },
 
             "should format all array elements if no config is used" : function () {
-                var array = getArrayOfNumbers(300);
-                var str = formatio.ascii(array);
+                var str = formatio.ascii(range(300));
 
                 assert.contains(str, "100");
                 assert.contains(str, "299]");
@@ -152,19 +149,11 @@
         },
 
         "limit count of formated object properties": {
-            setUp: function() {
-                this.testobject = {};
-                for (i = 0; i < 300; i++) {
-                    this.testobject[i.toString()] = i;
-                }
-            },
-
             "should stop at given limit" : function () {
-                var object = getObjectWithManyProperties(300);
-                configuredFormatio = formatio.configure({
-                    limitChildrenCount : 30
+                var configured = formatio.configure({
+                    limitChildrenCount: 30
                 });
-                var str = configuredFormatio.ascii(object);
+                var str = configured.ascii(getObjectWithManyProperties(300));
 
                 // returned formation may not be in the original order
                 assert.equals(30 + 3, str.split("\n").length);
@@ -172,11 +161,10 @@
             },
 
             "should only format as many properties as exists" : function(){
-                var object = getObjectWithManyProperties(10);
-                var configuredFormatio = formatio.configure({
+                var configured = formatio.configure({
                     limitChildrenCount : 30
                 });
-                var str = configuredFormatio.ascii(object);
+                var str = configured.ascii(getObjectWithManyProperties(10));
 
                 refute.contains(str, "10");
                 assert.contains(str, "9");
@@ -185,8 +173,7 @@
             },
 
             "should format all properties if no config is used" : function () {
-                var object = getObjectWithManyProperties(300);
-                var str = formatio.ascii(object);
+                var str = formatio.ascii(getObjectWithManyProperties(300));
 
                 assert.equals(300 + 2, str.split("\n").length);
             },

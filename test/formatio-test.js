@@ -32,6 +32,10 @@
             assert.equals(formatio.ascii("A string"), '"A string"');
         },
 
+        "formats 0-length strings in a special way": function () {
+            assert.equals(formatio.ascii(""), "(empty string)");
+        },
+
         "formats booleans without quotes": function () {
             assert.equals(formatio.ascii(true), "true");
             assert.equals(formatio.ascii(false), "false");

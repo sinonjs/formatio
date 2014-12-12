@@ -242,3 +242,11 @@ console.log(formatio.ascii(person));
 // Outputs
 // { name: "Chris" }
 ```
+
+
+## Changelog
+
+**1.1.2** (12.12.2014)
+
+* [Safe-guard innerHTML which may be empty (SVG elements)](https://github.com/busterjs/formatio/commit/ff623a6)
+* [Format empty strings as (empty string)](https://github.com/busterjs/formatio/commit/116d0ac)

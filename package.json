@@ -33,9 +33,9 @@
         "test-debug": "node --debug-brk node_modules/buster/bin/buster-test --node"
     },
     "dependencies": {
-        "samsam": "~1.1"
+        "samsam": "1.x"
     },
     "devDependencies": {
-        "buster": "*"
+        "buster": "0.7.x"
     }
 }

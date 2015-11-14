@@ -432,7 +432,7 @@
 
             "formats document object as toString": function () {
                 var str;
-                buster.assertions.refute.exception(function () {
+                buster.referee.refute.exception(function () {
                     str = formatio.ascii(document);
                 });
 
@@ -441,7 +441,7 @@
 
             "formats window object as toString": function () {
                 var str;
-                buster.assertions.refute.exception(function () {
+                buster.referee.refute.exception(function () {
                     str = formatio.ascii(window);
                 });
 
@@ -454,7 +454,7 @@
 
             "formats global object as toString": function () {
                 var str;
-                buster.assertions.refute.exception(function () {
+                buster.referee.refute.exception(function () {
                     str = formatio.ascii(global);
                 });
 

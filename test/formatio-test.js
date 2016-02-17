@@ -145,7 +145,7 @@
                 assert.contains(str, "100");
                 assert.contains(str, "299]");
                 refute.contains(str, "[...");
-            },
+            }
         },
 
         "limit count of formated object properties": {
@@ -176,7 +176,7 @@
                 var str = formatio.ascii(getObjectWithManyProperties(300));
 
                 assert.equals(300 + 2, str.split("\n").length);
-            },
+            }
         },
 
         "formats object": function () {
@@ -351,6 +351,27 @@
             refute.exception(function () {
                 formatio.ascii(obj);
             });
+        },
+
+        "sets": {
+            "formats sets": function () {
+                var set = new Set([2, {
+                    id: 42,
+                    prop: "Some"
+                }]);
+
+                var expected = "Set {2, { id: 42, prop: \"Some\" }}";
+                assert.equals(formatio.ascii(set), expected);
+            },
+
+            "limits the number of set members": function () {
+                var fmt = formatio.configure({limitChildrenCount: 30});
+                var str = fmt.ascii(new Set(range(300)));
+
+                refute.contains(str, "30");
+                assert.contains(str, "29");
+                assert.contains(str, "[... 270 more elements]");
+            }
         },
 
         "unquoted strings": {

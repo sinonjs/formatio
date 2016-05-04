@@ -30,6 +30,9 @@
   ],
   "license": "BSD-3-Clause",
   "main": "./lib/formatio",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/busterjs/formatio.git"

@@ -148,7 +148,7 @@
             }
         },
 
-        "limit count of formated object properties": {
+        "limit count of formatted object properties": {
             "should stop at given limit" : function () {
                 var configured = formatio.configure({
                     limitChildrenCount: 30

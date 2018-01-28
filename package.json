@@ -12,12 +12,17 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "node node_modules/buster/bin/buster-test --node",
-    "test-debug": "node --debug-brk node_modules/buster/bin/buster-test --node"
+    "test": "mocha 'lib/**/*.test.js'"
   },
   "dependencies": {
     "samsam": "1.3.0"
   },
   "devDependencies": {
+    "eslint": "4.16.0",
+    "eslint-config-sinon": "1.0.3",
+    "eslint-plugin-ie11": "1.0.0",
+    "eslint-plugin-mocha": "4.11.0",
+    "mocha": "5.0.0",
+    "referee": "1.2.0"
   }
 }

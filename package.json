@@ -11,6 +11,7 @@
     "url": "https://github.com/sinonjs/formatio.git"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "node node_modules/buster/bin/buster-test --node",
     "test-debug": "node --debug-brk node_modules/buster/bin/buster-test --node"
   },

@@ -1,6 +1,6 @@
 # formatio
 
-[![Build status](https://secure.travis-ci.org/busterjs/formatio.png?branch=master)](http://travis-ci.org/busterjs/formatio)
+[![Build status](https://secure.travis-ci.org/sinonjs/formatio.svg?branch=master)](http://travis-ci.org/sinonjs/formatio)
 
 > The cheesy object formatter
 

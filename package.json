@@ -18,6 +18,5 @@
     "samsam": "1.3.0"
   },
   "devDependencies": {
-    "buster": "0.7.x"
   }
 }

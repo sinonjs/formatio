@@ -1,5 +1,5 @@
 {
-  "name": "formatio",
+  "name": "@sinonjs/formatio",
   "version": "1.2.0",
   "description": "Human-readable object formatting",
   "homepage": "http://busterjs.org/docs/formatio/",

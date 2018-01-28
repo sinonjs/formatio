@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/sinonjs/formatio.git"
   },
+  "files": [
+    "lib/**/*[^test].js"
+  ],
   "scripts": {
     "lint": "eslint .",
     "test": "mocha 'lib/**/*.test.js'",

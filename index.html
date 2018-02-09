@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>formatio - formatio</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "formatio";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> formatio</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">formatio</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#formatio">formatio</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#formatioascii-api">formatio.ascii API</a></li>
+        
+            <li><a class="toctree-l3" href="#formatioascii-properties">formatio.ascii properties</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">formatio</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>formatio</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/sinonjs/formatio/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="formatio">formatio</h1>
+<p>Pretty formatting of arbitrary JavaScript values. Currently only supports ascii
+formatting, suitable for command-line utilities. Like <code>JSON.stringify</code>, it
+formats objects recursively, but unlike <code>JSON.stringify</code>, it can handle
+regular expressions, functions, circular objects and more.</p>
+<p><code>formatio</code> is a general-purpose library. It works in browsers (including old
+and rowdy ones, like IE6) and Node. It will define itself as an AMD module if
+you want it to (i.e. if there's a <code>define</code> function available).</p>
+<h2 id="formatioascii-api"><code>formatio.ascii</code> API</h2>
+<p><code>formatio.ascii</code> can take any JavaScript object and format it nicely as plain
+text. It uses the helper functions described below to format different types of
+objects.</p>
+<h3 id="formatioasciiobject"><code>formatio.ascii(object)</code></h3>
+<p><code>object</code> can be any kind of object, including DOM elements.</p>
+<p><strong>Simple object</strong></p>
+<pre><code class="javascript">var formatio = require(&quot;formatio&quot;);
+
+var object = { name: &quot;Christian&quot; };
+console.log(formatio.ascii(object));
+
+// Outputs:
+// { name: &quot;Christian&quot; }
+</code></pre>
+
+<p><strong>Complex object</strong></p>
+<pre><code class="javascript">var formatio = require(&quot;formatio&quot;);
+
+var developer = {
+    name: &quot;Christian&quot;,
+    interests: [&quot;Programming&quot;, &quot;Guitar&quot;, &quot;TV&quot;],
+
+    location: {
+        language: &quot;Norway&quot;,
+        city: &quot;Oslo&quot;,
+
+        getLatLon: function getLatLon(callback) {
+            // ...
+        },
+
+        distanceTo: function distanceTo(location) {
+        }
+    },
+
+    speak: function () {
+        return &quot;Oh hi!&quot;;
+    }
+};
+
+console.log(formatio.ascii(developer));
+
+// Outputs:
+// {
+//   interests: [&quot;Programming&quot;, &quot;Guitar&quot;, &quot;TV&quot;],
+//   location: {
+//     city: &quot;Oslo&quot;,
+//     distanceTo: function distanceTo() {},
+//     getLatLon: function getLatLon() {},
+//     language: &quot;Norway&quot;
+//   },
+//   name: &quot;Christian&quot;,
+//   speak: function () {}
+// }
+</code></pre>
+
+<p><strong>Custom constructor</strong></p>
+<p>If the object to format is not a generic <code>Object</code> object, <strong>formatio</strong>
+displays the type of object (i.e. name of constructor). Set the
+<code>excludeConstructors</code> (see below) property to control what constructors to
+include in formatted output.</p>
+<pre><code class="javascript">var formatio = require(&quot;formatio&quot;);
+
+function Person(name) { this.name = name; }
+
+var dude = new Person(&quot;Dude&quot;);
+console.log(format.ascii(dude));
+
+// Outputs:
+// [Person] { name: &quot;Dude&quot; }
+</code></pre>
+
+<p><strong>DOM elements</strong></p>
+<p>DOM elements are formatted as abbreviated HTML source. 20 characters of
+<code>innerHTML</code> is included, and if the content is longer, it is truncated with
+<code>"[...]"</code>. Future editions will add the possibility to format nested markup
+structures.</p>
+<pre><code class="javascript">var p = document.createElement(&quot;p&quot;);
+p.id = &quot;sample&quot;;
+p.className = &quot;notice&quot;;
+p.setAttribute(&quot;data-custom&quot;, &quot;42&quot;);
+p.innerHTML = &quot;Hey there, here's some text for ya there buddy&quot;;
+
+console.log(formatio.ascii(p));
+
+// Outputs
+// &amp;lt;p id=&quot;sample&quot; class=&quot;notice&quot; data-custom=&quot;42&quot;&amp;gt;Hey there, here's so[...]&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<h3 id="formatioasciifuncfunc"><code>formatio.ascii.func(func)</code></h3>
+<p>Formats a function like <code>"function [name]() {}"</code>. The name is retrieved from
+<code>formatio.functionName</code>.</p>
+<h3 id="formatioasciiarrayarray"><code>formatio.ascii.array(array)</code></h3>
+<p>Formats an array as <code>"[item1, item2, item3]"</code> where each item is formatted
+with <code>formatio.ascii</code>. Circular references are represented in the resulting
+string as <code>"[Circular]"</code>.</p>
+<h3 id="formatioasciiobjectobject"><code>formatio.ascii.object(object)</code></h3>
+<p>Formats all properties of the object with <code>formatio.ascii</code>. If the object can
+be fully represented in 80 characters, it's formatted in one line. Otherwise,
+it's nicely indented over as many lines as necessary. Circular references are
+represented by <code>"[Circular]"</code>.</p>
+<p>Objects created with custom constructors will be formatted as
+<code>"[ConstructorName] { ... }"</code>. Set the <code>excludeConstructors</code> property to
+control what constructors are included in the output like this.</p>
+<h3 id="formatioasciielementelement"><code>formatio.ascii.element(element)</code></h3>
+<p>Formats a DOM element as HTML source. The tag name is represented in lower-case
+and all attributes and their values are included. The element's content is
+included, up to 20 characters. If the length exceeds 20 characters, it's
+truncated with a <code>"[...]"</code>.</p>
+<h3 id="formatiofunctionnamefunc"><code>formatio.functionName(func)</code></h3>
+<p>Guesses a function's name. If the function defines the <code>displayName</code> property
+(used by <code>some debugging tools &lt;http://trac.webkit.org/changeset/42478&gt;</code>_) it is
+preferred. If it is not found, the <code>name</code> property is tried. If no name can be
+found this way, an attempt is made to find the function name by looking at the
+function's <code>toString()</code> representation.</p>
+<h3 id="formatioconstructornameobject"><code>formatio.constructorName(object)</code></h3>
+<p>Attempts to guess the name of the constructor that created the object. It does
+so by getting the name of <code>object.constructor</code> using <code>functionName</code>. If a
+name is found, <code>excludeConstructors</code> is consulted. If the constructor name
+matches any of these elements, an empty string is returned, otherwise the name
+is returned.</p>
+<h2 id="formatioascii-properties"><code>formatio.ascii</code> properties</h2>
+<h3 id="quotestringstrue"><code>quoteStrings(true)</code></h3>
+<p>Whether or not to quote simple strings. When set to <code>false</code>, simple strings
+are not quoted. Strings in arrays and objects will still be quoted, but
+<code>ascii("Some string")</code> will not gain additional quotes.</p>
+<h3 id="limitchildrencountnumber"><code>limitChildrenCount(number)</code></h3>
+<p>This property allows to limit the number of printed array elements or object
+properties. When set to 0, all elements will be included in output, any number
+greater than zero will set the limit to that number.</p>
+<h3 id="excludeconstructors-object"><code>excludeConstructors (["Object", /^.$/])</code></h3>
+<p>An array of strings and/or regular expressions naming constructors that should
+be stripped from the formatted output. The default value skips objects created
+by <code>Object</code> and constructors that have one character names (which are
+typically used in <code>Object.create</code> shims).</p>
+<p>While you can set this property directly on <code>formatio.ascii</code>, it is
+recommended to create an instance of <code>formatio.ascii</code> and override the
+property on that object.</p>
+<p><strong>Strings</strong> represent constructor names that should not be represented in the
+formatted output. <strong>Regular expressions</strong> are tested against constructor names
+when formatting. If the expression is a match, the constructor name is not
+included in the formatted output.</p>
+<pre><code class="javascript">function Person(name) {
+    this.name = name;
+}
+
+var person = new Person(&quot;Chris&quot;);
+console.log(formatio.ascii(person));
+
+// Outputs
+// [Person] { name: &quot;Chris&quot; }
+
+var formatter = Object.create(formatio);
+formatter.excludeConstructors = [&quot;Object&quot;, /^.$/, &quot;Person&quot;];
+console.log(formatter.ascii(person));
+
+// Outputs
+// { name: &quot;Chris&quot; }
+
+// Global overwrite, generally not recommended
+formatio.excludeConstructors = [&quot;Object&quot;, /^.$/, &quot;Person&quot;];
+console.log(formatio.ascii(person));
+
+// Outputs
+// { name: &quot;Chris&quot; }
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/sinonjs/formatio/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.17.2
+Build Date UTC : 2018-02-09 20:06:13
+-->

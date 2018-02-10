@@ -14,7 +14,16 @@ regular expressions, functions, circular objects and more.
 and rowdy ones, like IE6) and Node. It will define itself as an AMD module if
 you want it to (i.e. if there's a `define` function available).
 
-Documentation: https://sinonjs.github.io/formatio/
+## Installation
+
+```shell
+npm install @sinonjs/formatio
+```
+
+## Documentation
+
+https://sinonjs.github.io/formatio/
+
 
 ## Backers
 

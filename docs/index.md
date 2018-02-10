@@ -9,6 +9,12 @@ regular expressions, functions, circular objects and more.
 and rowdy ones, like IE6) and Node. It will define itself as an AMD module if
 you want it to (i.e. if there's a `define` function available).
 
+## Installation
+
+```shell
+npm install @sinonjs/formatio
+```
+
 
 ## `formatio.ascii` API
 
@@ -25,7 +31,7 @@ objects.
 **Simple object**
 
 ```javascript
-var formatio = require("formatio");
+var formatio = require("@sinonjs/formatio");
 
 var object = { name: "Christian" };
 console.log(formatio.ascii(object));
@@ -38,7 +44,7 @@ console.log(formatio.ascii(object));
 **Complex object**
 
 ```javascript
-var formatio = require("formatio");
+var formatio = require("@sinonjs/formatio");
 
 var developer = {
     name: "Christian",
@@ -86,7 +92,7 @@ displays the type of object (i.e. name of constructor). Set the
 include in formatted output.
 
 ```javascript
-var formatio = require("formatio");
+var formatio = require("@sinonjs/formatio");
 
 function Person(name) { this.name = name; }
 

@@ -98,4 +98,4 @@ Become a sponsor and get your logo on our README on GitHub with a link to your s
 
 ## Licence
 
-samsam was released under [BSD-3](LICENSE)
+formatio was released under [BSD-3](LICENSE)

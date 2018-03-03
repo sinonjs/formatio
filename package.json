@@ -23,12 +23,12 @@
     "samsam": "1.3.0"
   },
   "devDependencies": {
+    "@sinonjs/referee": "^2.0.0",
     "eslint": "^4.16.0",
     "eslint-config-sinon": "^1.0.3",
     "eslint-plugin-ie11": "^1.0.0",
     "eslint-plugin-mocha": "^4.11.0",
     "mocha": "^5.0.0",
-    "nyc": "^11.4.1",
-    "referee": "^1.2.0"
+    "nyc": "^11.4.1"
   }
 }

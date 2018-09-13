@@ -20,10 +20,10 @@
     "test-coverage": "nyc --reporter text --reporter html --reporter lcovonly npm run test"
   },
   "dependencies": {
-    "samsam": "1.3.0"
+    "@sinonjs/samsam": "2.1.0"
   },
   "devDependencies": {
-    "@sinonjs/referee": "^2.0.0",
+    "@sinonjs/referee": "2.5.0",
     "eslint": "^4.19.1",
     "eslint-config-sinon": "^1.0.3",
     "eslint-plugin-ie11": "^1.0.0",

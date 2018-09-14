@@ -6,8 +6,7 @@ formats objects recursively, but unlike `JSON.stringify`, it can handle
 regular expressions, functions, circular objects and more.
 
 `formatio` is a general-purpose library. It works in browsers (including old
-and rowdy ones, like IE6) and Node. It will define itself as an AMD module if
-you want it to (i.e. if there's a `define` function available).
+and rowdy ones, like IE6) and Node. If you need to use it with AMD or as a global, then there's a UMD version in `dist/`.
 
 ## Installation
 

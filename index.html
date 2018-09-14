@@ -109,8 +109,7 @@ formatting, suitable for command-line utilities. Like <code>JSON.stringify</code
 formats objects recursively, but unlike <code>JSON.stringify</code>, it can handle
 regular expressions, functions, circular objects and more.</p>
 <p><code>formatio</code> is a general-purpose library. It works in browsers (including old
-and rowdy ones, like IE6) and Node. It will define itself as an AMD module if
-you want it to (i.e. if there's a <code>define</code> function available).</p>
+and rowdy ones, like IE6) and Node. If you need to use it with AMD or as a global, then there's a UMD version in <code>dist/</code>.</p>
 <h2 id="installation">Installation</h2>
 <pre><code class="shell">npm install @sinonjs/formatio
 </code></pre>
@@ -322,6 +321,6 @@ console.log(formatio.ascii(person));
 </html>
 
 <!--
-MkDocs version : 0.17.2
-Build Date UTC : 2018-02-10 08:58:07
+MkDocs version : 0.17.3
+Build Date UTC : 2018-09-14 08:23:14
 -->

@@ -2,7 +2,7 @@
   "name": "@sinonjs/formatio",
   "version": "3.0.1",
   "description": "Human-readable object formatting",
-  "homepage": "http://busterjs.org/docs/formatio/",
+  "homepage": "https://sinonjs.github.io/formatio/",
   "author": "Christian Johansen",
   "license": "BSD-3-Clause",
   "main": "./lib/formatio",

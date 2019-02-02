@@ -23,6 +23,7 @@
     "test-coverage": "nyc --reporter text --reporter html --reporter lcovonly npm run test"
   },
   "dependencies": {
+    "@sinonjs/commons": "^1",
     "@sinonjs/samsam": "^2 || ^3"
   },
   "devDependencies": {

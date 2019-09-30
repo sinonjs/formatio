@@ -27,7 +27,7 @@
     "@sinonjs/samsam": "^3.1.0"
   },
   "devDependencies": {
-    "@sinonjs/referee": "^2.6.0",
+    "@sinonjs/referee": "^3.2.0",
     "eslint": "^4.19.1",
     "eslint-config-sinon": "^1.0.3",
     "eslint-plugin-ie11": "^1.0.0",

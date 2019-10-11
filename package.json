@@ -20,6 +20,7 @@
     "lint": "eslint .",
     "prepublishOnly": "npm run build && mkdocs gh-deploy -r upstream || mkdocs gh-deploy -r origin",
     "test": "mocha 'lib/**/*.test.js'",
+    "test-check-coverage": "npm run test-coverage && nyc check-coverage --branches 100 --functions 100 --lines 100",
     "test-coverage": "nyc --reporter text --reporter html --reporter lcovonly npm run test"
   },
   "dependencies": {
@@ -34,6 +35,8 @@
     "eslint-plugin-ie11": "^1.0.0",
     "eslint-plugin-mocha": "^6.1.1",
     "eslint-plugin-prettier": "^3.1.1",
+    "jsdom": "^15.1.1",
+    "jsdom-global": "^3.0.2",
     "mocha": "^6.2.1",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",

@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@sinonjs/commons": "^1",
-    "@sinonjs/samsam": "^3.1.0"
+    "@sinonjs/samsam": "^4.2.0"
   },
   "devDependencies": {
     "@sinonjs/referee": "^3.2.0",

@@ -5,6 +5,7 @@ env:
   node: true
 
 globals:
+  Map: false
   Set: false
   Symbol: false
   BigInt: false

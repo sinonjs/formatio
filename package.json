@@ -1,6 +1,6 @@
 {
   "name": "@sinonjs/formatio",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "description": "Human-readable object formatting",
   "homepage": "https://sinonjs.github.io/formatio/",
   "author": "Christian Johansen",
@@ -25,7 +25,6 @@
     "preversion": "npm run test-check-coverage",
     "version": "changes --commits --footer",
     "postversion": "git push --follow-tags && npm publish"
-
   },
   "dependencies": {
     "@sinonjs/commons": "^1",

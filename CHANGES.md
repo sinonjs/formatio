@@ -1,5 +1,19 @@
 # Changes
 
+## 5.0.0
+
+- [`116aedb`](https://github.com/sinonjs/formatio/commit/116aedb20ca89f5f022633457366afe17b070772)
+  Drop support for Node 8 (Morgan Roderick)
+    >
+    > As can be seen at https://github.com/nodejs/Release, Node 8 reached
+    > "end" of life on 2019-12-31, and is no longer actively supported.
+    >
+    > We will stop testing in Node 8 and start testing in Node 13, which will
+    > become the next LTS release from April 2020.
+    >
+
+_Released on 2020-02-19._
+
 ## 4.0.1
 
 - [`8dae99e`](https://github.com/sinonjs/formatio/commit/8dae99e19fb1f63707669aa18375aac377de92be)

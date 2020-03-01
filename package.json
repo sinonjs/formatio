@@ -31,7 +31,7 @@
     "@sinonjs/samsam": "^5.0.2"
   },
   "devDependencies": {
-    "@sinonjs/referee": "^4.0.0",
+    "@sinonjs/referee": "^5.0.0",
     "@studio/changes": "^2.0.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",

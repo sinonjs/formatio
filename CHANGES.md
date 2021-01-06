@@ -1,5 +1,12 @@
 # Changes
 
+## 6.0.0
+
+- [`31bec4c`](https://github.com/sinonjs/formatio/commit/31bec4cc2fedf4b0a0b031e557af3d27228b0bff)
+  Deprecate package (Morgan Roderick)
+
+_Released on 2021-01-06._
+
 ## 5.0.1
 
 - [`47a360d`](https://github.com/sinonjs/formatio/commit/47a360d5c5db72ba8ced2d598421bfe105facc69)

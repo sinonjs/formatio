@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="None">
   
+  
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>formatio - formatio</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <title>formatio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
   <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="." class="icon icon-home"> formatio</a>
         <div role="search">
@@ -45,33 +47,44 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href=".">formatio</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#formatio">formatio</a></li>
-    
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">formatio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formatioascii-api">formatio.ascii API</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#installation">Installation</a></li>
-        
-            <li><a class="toctree-l3" href="#formatioascii-api">formatio.ascii API</a></li>
-        
-            <li><a class="toctree-l3" href="#formatioascii-properties">formatio.ascii properties</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#formatioasciiobject">formatio.ascii(object)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatioasciifuncfunc">formatio.ascii.func(func)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatioasciiarrayarray">formatio.ascii.array(array)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatioasciiobjectobject">formatio.ascii.object(object)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatioasciielementelement">formatio.ascii.element(element)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatiofunctionnamefunc">formatio.functionName(func)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatioconstructornameobject">formatio.constructorName(object)</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formatioascii-properties">formatio.ascii properties</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#quotestringstrue">quoteStrings(true)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#limitchildrencountnumber">limitChildrenCount(number)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#excludeconstructors-object">excludeConstructors (["Object", /^.$/])</a>
+    </li>
+        </ul>
+    </li>
     </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -99,6 +112,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -294,7 +308,7 @@ console.log(formatio.ascii(person));
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -304,7 +318,7 @@ console.log(formatio.ascii(person));
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/sinonjs/formatio/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -316,11 +330,16 @@ console.log(formatio.ascii(person));
     <script>var base_url = '.';</script>
     <script src="js/theme.js" defer></script>
       <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2020-02-20 11:29:01
+MkDocs version : 1.1.2
+Build Date UTC : 2021-01-06 15:15:18.299148+00:00
 -->

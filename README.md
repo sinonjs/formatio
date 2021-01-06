@@ -1,4 +1,12 @@
-# formatio
+# formatio - DEPRECATED
+
+---
+
+This package has been deprecated and will receive no further maintenance.
+
+If you need this package, please fork it and maintain it yourself.
+
+---
 
 [![Build status](https://secure.travis-ci.org/sinonjs/formatio.svg?branch=master)](http://travis-ci.org/sinonjs/formatio)
 [![codecov](https://codecov.io/gh/sinonjs/formatio/branch/master/graph/badge.svg)](https://codecov.io/gh/sinonjs/formatio)
